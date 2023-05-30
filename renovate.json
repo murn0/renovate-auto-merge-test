@@ -1,24 +1,27 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base",
-    "helpers:pinGitHubActionDigests",
-    "github>aquaproj/aqua-renovate-config#1.5.2"
-  ],
-  "automerge": true,
-  "regexManagers": [
-    {
-      "datasourceTemplate": "github-releases",
-      "fileMatch": [
-          "^renovate\\.json5?$",
-          "^\\.github/renovate\\.json5?$",
-          "^\\.gitlab/renovate\\.json5?$",
-          "^\\.renovaterc$",
-          "^\\.renovaterc\\.json5?$"
-      ],
-      "matchStrings": [
-          "\"github>(?<depName>(?<packageName>[^/:# \\n]+/[^/:# \\n]+)[^#() \\n]*)#(?<currentValue>[^\" \\n\\(]+)"
-      ]
-    }
-  ]
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:base",
+        "helpers:pinGitHubActionDigests",
+        "github>aquaproj/aqua-renovate-config#1.5.2"
+    ],
+    "automerge": true,
+    "major": {
+        "automerge": false
+    },
+    "regexManagers": [
+        {
+            "datasourceTemplate": "github-releases",
+            "fileMatch": [
+                "^renovate\\.json5?$",
+                "^\\.github/renovate\\.json5?$",
+                "^\\.gitlab/renovate\\.json5?$",
+                "^\\.renovaterc$",
+                "^\\.renovaterc\\.json5?$"
+            ],
+            "matchStrings": [
+                "\"github>(?<depName>(?<packageName>[^/:# \\n]+/[^/:# \\n]+)[^#() \\n]*)#(?<currentValue>[^\" \\n\\(]+)"
+            ]
+        }
+    ]
 }
