@@ -16,6 +16,6 @@ jobs:
     with:
       aqua_version: v2.8.0
       aqua_policy_allow: true
-    permissions:
+    permission:
       pull-requests: write
       contents: read
