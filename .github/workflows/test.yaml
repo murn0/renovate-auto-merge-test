@@ -22,6 +22,6 @@ jobs:
         with:
           aqua_version: v2.8.0
         env:
-          AQUA_CONFIG: ../../.config/aqua/aqua.yaml
+          AQUA_CONFIG: ./.config/aqua/aqua.yaml
       - name:
         run: actionlint -version

@@ -9,6 +9,12 @@
     "major": {
         "automerge": false
     },
+    "packageRules": [
+        {
+            "matchManagers": ["github-actions"],
+            "versioning": "semver"
+        }
+    ],
     "regexManagers": [
         {
             "datasourceTemplate": "github-releases",
