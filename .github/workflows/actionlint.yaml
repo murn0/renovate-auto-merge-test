@@ -1,16 +1,15 @@
 ---
 name: actionlint
 on:
-  workflow_dispatch
-  # push:
-  #   branches: [main]
-  #   paths:
-  #     - .github/workflows/*.yaml
-  # pull_request:
-  #   paths:
-  #     - .github/workflows/*.yaml
-  #     - .config/aqua/imports/actionlint.yaml
-  #     - .config/aqua/imports/reviewdog.yaml
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/*.yaml
+  pull_request:
+    paths:
+      - .github/workflows/*.yaml
+      - .config/aqua/imports/actionlint.yaml
+      - .config/aqua/imports/reviewdog.yaml
 jobs:
   actionlint:
     uses: suzuki-shunsuke/actionlint-workflow/.github/workflows/actionlint.yaml@b6a5f966d4504893b2aeb60cf2b0de8946e48504 # v0.5.0
