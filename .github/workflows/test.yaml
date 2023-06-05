@@ -1,0 +1,19 @@
+---
+name: test
+on: pull_request
+permissions: {}
+jobs:
+  path-filter:
+    # Get changed files to filter jobs
+    outputs:
+      renovate-config-validator: ${{steps.changes.outputs.renovate-config-validator}}
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50 # v2.11.1
+        id: changes
+        with:
+          filters: |
+            renovate-config-validator:
+              - renovate.json
+              - .github/workflows/test.yaml
