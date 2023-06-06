@@ -6,6 +6,7 @@ jobs:
   path-filter:
     # Get changed files to filter jobs
     outputs:
+      update-aqua-checksums: ${{steps.changes.outputs.update-aqua-checksums}}
       renovate-config-validator: ${{steps.changes.outputs.renovate-config-validator}}
       ghalint: ${{steps.changes.outputs.ghalint}}
     runs-on: ubuntu-latest
@@ -15,6 +16,12 @@ jobs:
         id: changes
         with:
           filters: |
+            update-aqua-checksums:
+              - aqua/aqua.yaml
+              - aqua/imports/*.yaml
+              - aqua/aqua-checksums.json
+              - .github/workflows/test.yaml
+              - .github/workflows/wc-update-aqua-checksums.yaml
             renovate-config-validator:
               - renovate.json
               - .github/workflows/test.yaml
@@ -33,6 +40,7 @@ jobs:
     needs:
       - renovate-config-validator
       - ghalint
+      - update-aqua-checksums
 
   renovate-config-validator:
     uses: suzuki-shunsuke/renovate-config-validator-workflow/.github/workflows/validate.yaml@1a2fd7b15d99b1c434124b0bd2d8bd55b54ed869 # v0.2.0
@@ -46,6 +54,16 @@ jobs:
     if: needs.path-filter.outputs.ghalint == 'true'
     uses: ./.github/workflows/wc-ghalint.yaml
     permissions: {}
+
+  update-aqua-checksums:
+    needs: path-filter
+    if: needs.path-filter.outputs.update-aqua-checksums == 'true'
+    uses: ./.github/workflows/wc-update-aqua-checksums.yaml
+    permissions:
+      contents: read
+    secrets:
+      gh_app_id: ${{secrets.APP_ID}}
+      gh_app_private_key: ${{secrets.APP_PRIVATE_KEY}}
 
   enable-automerge:
     uses: ./.github/workflows/wc-enable-auto-merge.yaml
