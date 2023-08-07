@@ -64,8 +64,8 @@ jobs:
     with:
       aqua_version: v2.9.0
       prune: true
-      app_id: "op://Github/uhto3hzapjcxicwm664wvh4zu4/AppID"
-      app_secret: "op://Github/uhto3hzapjcxicwm664wvh4zu4/private_key"
+      app_id: "op://Github/cegdv6i4ibyisixrhh4yyrnknq/AppID"
+      app_secret: "op://Github/cegdv6i4ibyisixrhh4yyrnknq/private_key"
     secrets:
       op_service_account_token: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
 

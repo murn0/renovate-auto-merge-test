@@ -57,9 +57,6 @@ jobs:
     runs-on: ${{fromJSON(inputs.runs-on)}}
     permissions:
       contents: read # To checkout private repository
-    outputs:
-      APP_ID: ${{steps.op-load-secret.outputs.APP_ID}}
-      APP_SECRET: ${{steps.op-load-secret.outputs.APP_SECRET}}
     steps:
       - name: Get ref
         id: ref
