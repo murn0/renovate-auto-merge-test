@@ -57,6 +57,9 @@ jobs:
     runs-on: ${{fromJSON(inputs.runs-on)}}
     permissions:
       contents: read # To checkout private repository
+    outputs:
+      APP_ID: ${{steps.op-load-secret.outputs.APP_ID}}
+      APP_SECRET: ${{steps.op-load-secret.outputs.APP_SECRET}}
     steps:
       - name: Get ref
         id: ref
@@ -74,7 +77,7 @@ jobs:
       - uses: 1password/load-secrets-action@d1a4e73495bde3551cf63f6c048588b8f734e21d # v1.3.1
         id: op-load-secret
         with:
-          export-env: true
+          export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           APP_ID: ${{ inputs.app_id }}
